@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PaddleContoroller : MonoBehaviour
 {
-    public int speed;
+    public int speed, normalSpeed, boostedSpeed;
+    public int speedCooldown;
+    public Vector3 boostedScale;
     public KeyCode upKey;
     public KeyCode downKey;
     private Rigidbody2D rig;
@@ -12,6 +14,7 @@ public class PaddleContoroller : MonoBehaviour
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        normalSpeed = speed;    
     }
 
     private void Update()
@@ -36,6 +39,27 @@ public class PaddleContoroller : MonoBehaviour
     private void MoveObject(Vector2 movement)
     {
         Debug.Log("Test : "+movement);
-        rig.velocity = movement; 
+        rig.velocity = movement;  
     }
+
+    public void ActivatePUScaleUp(float magnitude)
+    {
+        transform.localScale = new Vector3(0.3f, magnitude, 1);
+        StartCoroutine("SpeedDuration");
+    }
+
+    public void ActivatePUSpeedSUp()
+    {
+        speed = boostedSpeed;
+        StartCoroutine("SpeedDuration");       
+    }
+
+    IEnumerator SpeedDuration ()
+    {
+        yield return new WaitForSeconds (speedCooldown);
+        speed = normalSpeed;
+        transform.localScale = new Vector3(0.3f, 2, 1);
+    }
+
 }
+

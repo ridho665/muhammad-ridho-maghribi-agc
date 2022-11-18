@@ -22,4 +22,9 @@ public class BallController : MonoBehaviour
     {
         rig.velocity *= magnitude;
     }
+
+    public void ActivatePUScaleUp(float magnitude)
+    {
+        transform.localScale *= magnitude;
+    }
 }

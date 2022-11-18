@@ -15,4 +15,10 @@ public class MainMenuController : MonoBehaviour
         Debug.Log("Created By M.Ridho Maghribi");
     }
 
+    public void Credit()
+    {
+        Debug.Log("Nama : Muhammad Ridho Maghribi");
+        Debug.Log("GIT  : https://github.com/ridho665");
+    }
+
 }
